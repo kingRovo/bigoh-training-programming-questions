@@ -1,13 +1,15 @@
 // sizeava Program to Remove Duplicate Elements
 // From the Array using extra space
+
 /**
  * DuplicateValues
- */
+*/
+public class DuplicateValues {
 
-public class DuplicateValues  {
 	public static int removeDuplicates(int a[], int n)
 	{
-		if (n == 0 || n == 1) {
+
+		if (n == 0 || n == 1) { // return array if have only one element or empty array.
 			return n;
 		}
 
