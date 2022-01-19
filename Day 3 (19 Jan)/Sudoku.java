@@ -5,37 +5,61 @@
 // 1. Each row must contain the digits 1-9 without repetition.
 // 2. Each column must contain the digits 1-9 without repetition.
 // 3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
-
+import java.util.*;
 public class Sudoku {
+
+    static boolean boxTest(int[][] sudoku,int rowIndex,int clmIndex){
+      
+ 
+    return 
+    
+    
+    // if (val1==val2||val1==val3) {
+    //     return false;
+    // }
+    // else if (val2==val3) {
+        
+    // }
+
+    }
     static boolean isValidSudoku(int[][] sudoku) {
         int rowDgt, clmDgt;
         boolean flg=true;
+        ArrayList<Integer>forRow = new ArrayList<>();
+        ArrayList<Integer>forcol = new ArrayList<>();
         for (int i = 0; i < sudoku.length; i++) {
             rowDgt = -1;
             clmDgt = -1;
+            
             for (int j = 0; j < sudoku.length; j++) {
 
-                if (sudoku[i][j] == rowDgt) {
-                    flg =  false;
+                if (sudoku[i][j] > 0) {
+                    if (!forRow.contains(sudoku[i][j])) {
+                        forRow.add(sudoku[i][j]);
+                    }
 
-                } else if (sudoku[i][j] > 0) {
-                    rowDgt = sudoku[i][j];
-                } else
-                    continue;
+                    else return false;
+
+                } 
+               
 
                 for (int k = i; k < sudoku.length; k++) {
 
-                    if (sudoku[k][j] == clmDgt)
-                        flg =  false;
+                    
 
-                    else if (sudoku[k][j] > 0) {
-                        clmDgt = sudoku[i][j];
+                    if (sudoku[k][j] > 0) {
+                        if(!forcol.contains(sudoku[k][j]));
+                        forcol.add(sudoku[k][j]);
                     }
                 }
 
-                if (i % 3 != 0 && j % 3 != 0) {
+                
 
-                    
+                 
+                if ((i+1) % 3 == 0 && (j+1) % 3 == 0) { 
+                    //System.out.println(i+" - "+j);
+                   // flg = boxTest(sudoku,i, j);
+
 
                 }
             }
@@ -46,14 +70,15 @@ public class Sudoku {
     }
 
     public static void main(String[] args) {
-        int sudoku[][] = new int[][] { { 5, 3, 0, 0, 7, 0, 0, 0, 0 },
+        int sudoku[][] = new int[][] { 
+                { 5, 3, 0, 0, 7, 0, 0, 0, 0 },
                 { 6, 0, 0, 1, 9, 5, 0, 0, 0 },
                 { 0, 9, 8, 0, 0, 0, 0, 6, 0 },
                 { 8, 0, 0, 0, 6, 0, 0, 0, 3 },
                 { 4, 0, 0, 8, 0, 3, 0, 0, 1 },
                 { 7, 0, 0, 0, 2, 0, 0, 0, 6 },
-                { 0, 6, 0, 0, 0, 3, 2, 8, 0 },
-                { 0, 0, 0, 4, 1, 9, 0, 0, 5 },
+                { 0, 6, 0, 0, 0, 0, 2, 8, 0 },
+                { 0, 5, 0, 4, 1, 9, 0, 0, 5 },
                 { 0, 0, 0, 0, 8, 0, 0, 7, 9 }
         };
 
