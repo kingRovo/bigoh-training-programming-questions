@@ -19,16 +19,16 @@ public class ChessBoard {
 
                if (board[i][j] == 'k') {
 
-                   if (lookForHourse(board, 'H', i, j))
+                   if (HorseMoves(board, 'H', i, j))
                        return false;
 
-                   if (lookForElep(board, 'E', i, j))
+                   if (ElephantMoves(board, 'E', i, j))
                        return false;
 
                    if (lookForCamel(board, 'C', i, j))
                        return false;
 
-                   if (lookForQueen(board, 'Q', i, j))
+                   if (QueenMoves(board, 'Q', i, j))
                        return false;
 
                }
@@ -40,9 +40,9 @@ public class ChessBoard {
    
 
    // Function to check if Queen can attack the King
-    static boolean lookForQueen(char[][] board, char c, int i, int j) {
+    static boolean QueenMoves(char[][] board, char c, int i, int j) {
 
-       if (lookForCamel(board, c, i, j) || lookForElep(board, c, i, j))
+       if (lookForCamel(board, c, i, j) || ElephantMoves(board, c, i, j))
            return true;
 
        return false;
@@ -95,7 +95,7 @@ public class ChessBoard {
    }
 
    // Check if
-    static boolean lookForElep(char[][] board,char c, int i, int j) {
+    static boolean ElephantMoves(char[][] board,char c, int i, int j) {
 
        // Check downwards
        int k = 0;
@@ -135,11 +135,11 @@ public class ChessBoard {
        return false;
    }
 
-   // Check if the Hourse can attack the king
-    static boolean lookForHourse(char[][] board,
+   // Check if the Horse can attack the king
+    static boolean HorseMoves(char[][] board,
            char c, int i, int j) {
 
-       // All possible moves of the Hourse
+       // All possible moves of the Horse
        int[] x = { 2, 2, -2, -2, 1, 1, -1, -1 };
        int[] y = { 1, -1, 1, -1, 2, -2, 2, -2 };
 
