@@ -1,24 +1,26 @@
-int main()
-{
-    swappedNum;
-    int firstDigit, lastDigit, digits;
 
-    /* Find last digit */
-    lastDigit  = num % 10;
+class SwapFirstNdLastDgt {
+    public static int swapNum(int n) {
 
-    /* Find total number of digit - 1 */
-    digits     = (int)log10(num); 
+        int frstDgt, lstDgt, digits;
+        int tmp;
+        lstDgt = n % 10;
+        digits = (int) (Math.log10(n));
+        frstDgt = (int) (n / Math.pow(10, digits));
 
-    /* Find first digit */
-    firstDigit = (int)(num / pow(10, digits)); 
+        tmp = lstDgt;
+        tmp *= (int) Math.pow(10, digits);
+        tmp += n % ((int) Math.pow(10, digits));
+        tmp -= lstDgt;
+        tmp += frstDgt;
 
-    swappedNum  = lastDigit;
-    swappedNum *= (int) pow(10, digits);
-    swappedNum += num % ((int) pow(10, digits));
-    swappedNum -= lastDigit;
-    swappedNum += firstDigit;
+        return tmp;
+    }
 
-    printf("Original number = %d", num);
-    printf("Number after swapping first and last digit: %d", swappedNum);
+    public static void main(String arg[]) {
 
-    return 0;
+        System.out.print(swapNum(10006));
+
+    }
+
+}

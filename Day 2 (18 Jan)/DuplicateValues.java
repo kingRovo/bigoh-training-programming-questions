@@ -1,6 +1,5 @@
-// sizeava Program to Remove Duplicate Elements
-// From the Array using extra space
-
+// i)Write a program to remove duplicate values from an array and 
+// returns an array of unique values. int[] removeDuplicates(int[]values)
 /**
  * DuplicateValues
 */
@@ -16,7 +15,7 @@ public class DuplicateValues {
 		int size = 0;
 
 		for (int i = 0; i < n - 1; i++) {
-			if (a[i] != a[i + 1]) {
+			if (a[i] != a[i + 1]) { //compare with its next element 
 				a[size++] = a[i];
 			}
 		}

@@ -5,6 +5,8 @@
 // The numbers in each triplet should be ordered in ascending order, 
 // and the triplets themselves should be ordered in ascending order with respect to the numbers they hold. 
 // If no three numbers sum up to the target sum, the function should return an empty array
+
+
 import java.util.*;
 
 class TargetSum {
@@ -53,13 +55,14 @@ class TargetSum {
         int n = arr.length;
         int size = findTriplets(arr, n, sum).length;
         
-        // for (int i = 0; i < size; i++) {
-        //     for (int j = 0; j < 3; j++) {
+        System.out.println("size "+size);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < 3; j++) {
                 
-        //         System.out.print(findTriplets(arr, n, sum)[i][j]+" ");
-        //     }
-        //     System.out.println(" ");
-        // }
+                System.out.print(findTriplets(arr, n, sum)[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
 
 
     }
