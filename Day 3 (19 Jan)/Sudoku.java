@@ -27,11 +27,10 @@ public class Sudoku {
        
         HashSet<Integer> forRow = new HashSet<>();
         HashSet<Integer> forcol = new HashSet<>();
-      
+        int flgrow =0; 
         for (int i = 0; i < sudoku.length; i++) {
             rowDgt = -1;
             clmDgt = -1;
-
             for (int j = 0; j < sudoku.length; j++) {
 
                 if (forRow.contains(sudoku[i][j]))
@@ -42,13 +41,14 @@ public class Sudoku {
                 if (flgrow != 0) {
                     for (int k = 0; k < sudoku.length; k++) {
 
-                        if (forcol.contains(sudoku[k][j]))
+                        if (forcol.contains(sudoku[j][k]))
                             return false;
 
                         if (sudoku[i][j] != 0)
-                            forcol.add(sudoku[k][j]);
+                            forcol.add(sudoku[j][k]);
 
                     }
+                    flgrow++;
 
                 }
 
