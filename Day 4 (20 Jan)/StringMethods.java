@@ -76,7 +76,7 @@ public class StringMethods {
 
                     if (pattern.charAt(k) == str.charAt(j + k)) {
                         cnt++;
-                       
+
                     }
                     if (cnt == pattern.length()) {
                         return true;
@@ -140,22 +140,49 @@ public class StringMethods {
         int l = 0;
         int r = str.length() - 1;
         while (l < r) {
-            temp = ch[l];
-            ch[l] = ch[r];
-            ch[r] = temp;
+
+            if (isVowel(ch[l])&&isVowel(ch[r])) {
+
+                temp = ch[l];
+                ch[l] = ch[r];
+                ch[r] = temp;
+                l++;
+                r--;
+            }
+            else if (isVowel(ch[l]) && isVowel(ch[r])!=true) {
+                r--;
+            }
+            else if (isVowel(ch[l])!=true && isVowel(ch[r])) {
+                l++;
+            }
+            else {
             l++;
             r--;
         }
-        str = String.valueOf(ch);
-        return str;
+
+            
+        }
+        str=String.valueOf(ch);return str;
+
+    }
+
+    static boolean isVowel(char c) {
+
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o'
+                || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+            return true;
+        } else
+            return false;
 
     }
 
     public static void main(String[] args) {
 
-        String string = "updeshe";
+        String string = "liipcoce";
 
-        System.out.println("Count Char : " + countChar(string, 'e'));
+        //System.out.println("Count Char : " + countChar(string, 'e'));
+
+        System.out.println(reverseVowels(string));
 
         // System.out.println("Substring :"+substring(string, 1, 3));
 
