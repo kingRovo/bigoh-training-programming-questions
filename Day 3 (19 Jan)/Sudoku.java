@@ -1,82 +1,83 @@
-// i) Write a method Boolean isValidSudoku(int[][]Sudoku)
-// Returns true if the given Sudoku is correctly arranged otherwise false
 
-// Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
-// 1. Each row must contain the digits 1-9 without repetition.
-// 2. Each column must contain the digits 1-9 without repetition.
-// 3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+
 import java.util.*;
 
-public class Sudoku {
+class test {
 
-    static boolean boxTest(int[][] sudoku, int rowIndex, int clmIndex) {
+    static boolean forRow(int matrix[][], int row) {
 
-        return true;
+        HashSet<Integer> uniqueRow = new HashSet<>();
 
-        // if (val1==val2||val1==val3) {
-        // return false;
-        // }
-        // else if (val2==val3) {
+        for (int i = 0; i < 9; i++) {
 
-        // }
-
-    }
-   
-    static boolean isValidSudoku(int[][] sudoku) {
-        int rowDgt, clmDgt;
-       
-        HashSet<Integer> forRow = new HashSet<>();
-        HashSet<Integer> forcol = new HashSet<>();
-        int flgrow =0; 
-        for (int i = 0; i < sudoku.length; i++) {
-            rowDgt = -1;
-            clmDgt = -1;
-            for (int j = 0; j < sudoku.length; j++) {
-
-                if (forRow.contains(sudoku[i][j]))
-                    return false;
-                if (sudoku[i][j] != 0)
-                    forRow.add(sudoku[i][j]);
-
-                if (flgrow != 0) {
-                    for (int k = 0; k < sudoku.length; k++) {
-
-                        if (forcol.contains(sudoku[j][k]))
-                            return false;
-
-                        if (sudoku[i][j] != 0)
-                            forcol.add(sudoku[j][k]);
-
-                    }
-                    flgrow++;
-
-                }
-
-                if ((i + 1) % 3 == 0 && (j + 1) % 3 == 0) {
-                    // System.out.println(i+" - "+j);
-                    // flg = boxTest(sudoku,i, j);
-
-                }
-            }
-
+            if (uniqueRow.contains(matrix[row][i]))
+                return false;
+            if (matrix[row][i] != 0)
+            uniqueRow.add(matrix[row][i]);
         }
+        return true;
+    }
 
+    public static boolean forCol(int matrix[][], int col) {
+        HashSet<Integer> uniqueCol = new HashSet<>();
+
+        for (int i = 0; i < 9; i++) {
+
+            if (uniqueCol.contains(matrix[i][col]))
+                return false;
+
+            if (matrix[i][col] != 0)
+            uniqueCol.add(matrix[i][col]);
+        }
+        return true;
+    }
+
+    public static boolean subBox(int matrix[][], int rowIndex,int colIndex) {
+
+        HashSet<Integer> uniqueBox = new HashSet<>();
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                int flg = matrix[row + rowIndex][col + colIndex];
+
+                if (uniqueBox.contains(flg))
+                    return false;
+                if (flg != 0)
+                   uniqueBox.add(flg);
+            }
+        }
+        return true;
+    }
+
+    static boolean cheackSudoku(int matrix[][], int row,int col) {
+
+        return forRow(matrix, row) && forCol(matrix, col) && subBox(matrix, row - row % 3, col - col % 3);
+    }
+
+    static boolean isValidSudoku(int matrix[][]) {
+        int n=9;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+
+                    if(!cheackSudoku(matrix, i, j)) return false;
+            }
+        }
         return true;
     }
 
     public static void main(String[] args) {
-        int sudoku[][] = new int[][] {
-            { 5, 3, 0, 0, 7, 0, 0, 0, 0 }, 
-            { 6, 0, 0, 1, 9, 0, 0, 0, 0 }, 
-            { 0, 9, 8, 0, 0, 0, 0, 9, 0 },
-            { 8, 0, 0, 0, 6, 0, 0, 0, 3 }, 
-            { 4, 0, 0, 8, 0, 3, 0, 0, 1 }, 
-            { 7, 0, 0, 0, 2, 0, 0, 0, 6 },
-            { 0, 6, 0, 0, 0, 0, 2, 8, 0 }, 
-            { 0, 0, 0, 4, 1, 9, 0, 0, 5 }, 
-            { 0, 0, 0, 0, 8, 0, 0, 7, 9 }
+        int[][] board = new int[][] {
+                { 5, 3, 0, 0, 7, 0, 0, 0, 0 }, 
+                { 6, 0, 0, 1, 9, 0, 0, 0, 0 }, 
+                { 0, 1, 8, 0, 0, 0, 0, 9, 0 },
+                { 8, 0, 0, 0, 6, 0, 0, 0, 3 }, 
+                { 4, 0, 0, 8, 0, 3, 0, 0, 1 }, 
+                { 0, 0, 0, 0, 2, 0, 0, 0, 6 },
+                { 0, 6, 0, 0, 0, 0, 2, 8, 0 }, 
+                { 0, 0, 0, 4, 1, 9, 0, 0, 5 }, 
+                { 0, 0, 0, 0, 8, 0, 0, 7, 9 }
         };
 
-        System.out.println(isValidSudoku(sudoku));
+        System.out.println((isValidSudoku(board) ? "True" : "False"));
     }
 }
