@@ -11,170 +11,164 @@
 public class ChessBoard {
 
 
-    static boolean isKingSafe(char[][] board) {
+    
+ 
+    static boolean CamelMoves(char[][] board, char camel, int i, int j) {
+
+      
+       int index = 0;
+       while (inRange(i + ++index, j + index)) {  // for the lower right diagonal
+
+           if (board[i + index][j + index] == camel)
+               return true;
+           if (board[i + index][j + index] != '-')
+               break;
+       }
+
+      
+       index = 0;
+       while (inRange(i + ++index, j - index)) {  // Check the lower left diagonal
+
+           if (board[i + index][j - index] == camel)
+               return true;
+           if (board[i + index][j - index] != '-')
+               break;
+       }
+
+     
+       index = 0;
+       while (inRange(i - ++index, j + index)) {    // upper right diagonal
+
+           if (board[i - index][j + index] == camel)
+               return true;
+           if (board[i - index][j + index] != '-')
+               break;
+       }
 
        
-       for (int i = 0; i < 8; i++) {
-           for (int j = 0; j < 8; j++) {
+       index = 0;
+       while (inRange(i - ++index, j - index)) {   // upper left diagonal
 
-               if (board[i][j] == 'k') {
-
-                   if (HorseMoves(board, 'H', i, j))
-                       return false;
-
-                   if (ElephantMoves(board, 'E', i, j))
-                       return false;
-
-                   if (lookForCamel(board, 'C', i, j))
-                       return false;
-
-                   if (QueenMoves(board, 'Q', i, j))
-                       return false;
-
-               }
-           }
-       }
-       return true;
-   }
-
-   
-
-   // Function to check if Queen can attack the King
-    static boolean QueenMoves(char[][] board, char c, int i, int j) {
-
-       if (lookForCamel(board, c, i, j) || ElephantMoves(board, c, i, j))
-           return true;
-
-       return false;
-   }
-
-   // Function to check if camel can attack the king
-    static boolean lookForCamel(char[][] board, char c, int i, int j) {
-
-       // Check the lower right diagonal
-       int k = 0;
-       while (inBounds(i + ++k, j + k)) {
-
-           if (board[i + k][j + k] == c)
+           if (board[i - index][j - index] == camel)
                return true;
-           if (board[i + k][j + k] != '-')
-               break;
-       }
-
-       // Check the lower left diagonal
-       k = 0;
-       while (inBounds(i + ++k, j - k)) {
-
-           if (board[i + k][j - k] == c)
-               return true;
-           if (board[i + k][j - k] != '-')
-               break;
-       }
-
-       // Check the upper right diagonal
-       k = 0;
-       while (inBounds(i - ++k, j + k)) {
-
-           if (board[i - k][j + k] == c)
-               return true;
-           if (board[i - k][j + k] != '-')
-               break;
-       }
-
-       // Check the upper left diagonal
-       k = 0;
-       while (inBounds(i - ++k, j - k)) {
-
-           if (board[i - k][j - k] == c)
-               return true;
-           if (board[i - k][j - k] != '-')
+           if (board[i - index][j - index] != '-')
                break;
        }
 
        return false;
    }
 
-   // Check if
-    static boolean ElephantMoves(char[][] board,char c, int i, int j) {
+    static boolean ElephantMoves(char[][] board,char elephant, int i, int j) {
 
-       // Check downwards
-       int k = 0;
-       while (inBounds(i + ++k, j)) {
-           if (board[i + k][j] == c)
+       // for down
+       int index = 0;
+       while (inRange(i + ++index, j)) {
+           if (board[i + index][j] == elephant)
                return true;
-           if (board[i + k][j] != '-')
+           if (board[i + index][j] != '-')
                break;
        }
 
-       // Check upwards
-       k = 0;
-       while (inBounds(i + --k, j)) {
-           if (board[i + k][j] == c)
+       // for top
+       index = 0;
+       while (inRange(i + --index, j)) {
+           if (board[i + index][j] == elephant)
                return true;
-           if (board[i + k][j] != '-')
+           if (board[i + index][j] != '-')
                break;
        }
 
-       // Check right
-       k = 0;
-       while (inBounds(i, j + ++k)) {
-           if (board[i][j + k] == c)
+       // for right
+       index = 0;
+       while (inRange(i, j + ++index)) {
+           if (board[i][j + index] == elephant)
                return true;
-           if (board[i][j + k] != '-')
+           if (board[i][j + index] != '-')
                break;
        }
 
-       // Check left
-       k = 0;
-       while (inBounds(i, j + --k)) {
-           if (board[i][j + k] == c)
+       // for left
+       index = 0;
+       while (inRange(i, j + --index)) {
+           if (board[i][j + index] == elephant)
                return true;
-           if (board[i][j + k] != '-')
+           if (board[i][j + index] != '-')
                break;
        }
        return false;
    }
 
-   // Check if the Horse can attack the king
     static boolean HorseMoves(char[][] board,
-           char c, int i, int j) {
+           char horse, int i, int j) {
 
-       // All possible moves of the Horse
-       int[] x = { 2, 2, -2, -2, 1, 1, -1, -1 };
-       int[] y = { 1, -1, 1, -1, 2, -2, 2, -2 };
+       int[] firstStep = { 2, 2, -2, -2, 1, 1, -1, -1 };
+       int[] secStep = { 1, -1, 1, -1, 2, -2, 2, -2 };
 
        for (int k = 0; k < 8; k++) {
 
-           // Incrementing index values
-           int m = i + x[k];
-           int n = j + y[k];
-
-           // Checking boundary conditions
-           // and character match
-           if (inBounds(m, n) && board[m][n] == c)
+       
+           int m = i + firstStep[k];
+           int n = j + secStep[k];
+           if (inRange(m, n) && board[m][n] == horse)
                return true;
        }
        return false;
    }
+   
+   static boolean QueenMoves(char[][] board, char queen, int i, int j) {
 
-   // Check if the indices are within
-   // the matrix or not
-    static boolean inBounds(int i, int j) {
+    if (CamelMoves(board, queen, i, j) || ElephantMoves(board, queen, i, j))
+        return true;
 
-       // Checking boundary conditions
-       return i >= 0 && i < 8 && j >= 0 && j < 8;
+    return false;
+}
+
+    static boolean inRange(int i, int j) {
+
+        if (i >= 0 && i < 8 && j >= 0 && j < 8) {
+            return true;
+        }
+        return false;
+       
    }
 
-   // Driver Code
+   static boolean isKingSafe(char[][] board) {
+
+       
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            if (board[i][j] == 'k') {
+                
+                
+                if (HorseMoves(board, 'H', i, j))
+                    return false;
+
+                if (ElephantMoves(board, 'E', i, j))
+                    return false;
+
+                if (CamelMoves(board, 'C', i, j))
+                    return false;
+
+                if (QueenMoves(board, 'Q', i, j))
+                    return false;
+
+            }
+        }
+    }
+    return true;
+}
+
+  
    public static void main(String[] args) {
 
-       // Chessboard instance
+ 
        char[][] board = { 
                { '-', '-', '-', 'k', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' },
-               { '-', '-', '-', '-', '-', '-', '-', '-' },
+               { '-', '-', '-', 'Q', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' },
                { '-', '-', '-', '-', '-', '-', '-', '-' } };
