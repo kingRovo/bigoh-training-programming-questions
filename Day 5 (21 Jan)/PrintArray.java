@@ -1,4 +1,5 @@
-
+// Write a method void printArray(int[][]arr)
+// Prints array elements clock wise and anti-clockwise alternatively.
 public class PrintArray {
 
     static void printClockWise(int arr[][]) {
