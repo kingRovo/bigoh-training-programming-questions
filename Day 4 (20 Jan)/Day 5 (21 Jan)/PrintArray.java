@@ -3,31 +3,122 @@ public class PrintArray {
 
     static void printClockWise(int arr[][]) {
 
-       
+        int rowLength = arr.length;
+        int colLength = arr.length;
 
-        int rowIndex = 0, colIndex = 0;
-        int arrSize = arr.length;
-        while (rowIndex != 1 && colIndex != 1) {
-            System.out.println(rowIndex+" --- "+colIndex);
-            if (rowIndex == 0 && colIndex < arrSize)
-                System.out.print(arr[rowIndex][colIndex++]);
+		 int colStartIndex = 0, rowStartIndex = 0;
 
-            if (colIndex == arrSize - 1 && rowIndex < arrSize)
-                System.out.println(arr[rowIndex++][colIndex]);
+		int visited = 0;
+		int totalElement = rowLength * colLength;
 
-            if (colIndex == arrSize - 1 && rowIndex == arrSize - 1 && colIndex > -1)
-                System.out.println(arr[rowIndex][colIndex--]);
+		while (colStartIndex < rowLength && rowStartIndex < colLength)
+		{
+            int i;
+			if (visited == totalElement)
+				break;
 
-            if (rowIndex == arrSize -1 && colIndex==0&&rowIndex>0)
-                System.out.println(arr[rowIndex--][colIndex]);
-            else System.out.println(arr[rowIndex][--colIndex]);
 
-        }
+			for (i = rowStartIndex; i < colLength; i++)
+			{
+				System.out.print(arr[colStartIndex][i] + " ");
+				visited++;
+			}
+			colStartIndex++;
 
-    }
+			if (visited == totalElement)
+				break;
 
+			for (i = colStartIndex; i < rowLength; i++)
+			{
+				System.out.print(arr[i][colLength - 1] + " ");
+				visited++;
+			}
+			colLength--;
+
+			if (visited == totalElement)
+				break;
+
+		
+			if (rowStartIndex < colLength)//for row
+			{
+				for (i = colLength - 1; i >= rowStartIndex; i--)
+				{
+					System.out.print(arr[rowLength - 1][i] + " ");
+					visited++;
+				}
+				rowLength--;
+			}
+
+			if (visited == totalElement)
+				break;
+
+			
+			if (colStartIndex < rowLength) //for columns
+			{
+				for (i = rowLength - 1; i >= colStartIndex; i--)
+				{
+					System.out.print(arr[i][rowStartIndex] + " ");
+					visited++;
+				}
+				rowStartIndex++;
+			}
+		}
+	}
+
+    
     static void printAntiClockWise(int arr[][]) {
 
+        int visited = 0;
+        int rowLength = arr.length;
+        int colLength = arr.length;
+        int totalElement = rowLength * colLength;
+
+        int colStartIndex = 0, rowStartIndex = 0;
+
+        while (colStartIndex < rowLength && rowStartIndex < colLength) {
+            int i;
+            if (visited == totalElement)
+                break;
+
+            for (i = colStartIndex; i < rowLength; i++) {
+                System.out.print(arr[i][rowStartIndex] + " ");
+                visited++;
+            }
+            rowStartIndex++;
+
+            if (visited == totalElement)
+                break;
+
+            for (i = rowStartIndex; i < colLength; i++) {
+                System.out.print(arr[rowLength - 1][i] + " ");
+                visited++;
+            }
+            rowLength--;
+
+            if (visited == totalElement)
+                break;
+
+            if (colStartIndex < rowLength) // for columns
+            {
+                for (i = rowLength - 1; i >= colStartIndex; i--) {
+                    System.out.print(arr[i][colLength - 1] + " ");
+                    visited++;
+                }
+                colLength--;
+            }
+
+            if (visited == totalElement)
+                break;
+
+            if (rowStartIndex < colLength) // for rows
+            {
+                for (i = colLength - 1; i >= rowStartIndex; i--) {
+                    System.out.print(arr[colStartIndex][i] + " ");
+                    visited++;
+                }
+                colStartIndex++;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -37,8 +128,11 @@ public class PrintArray {
                 { 7, 8, 9 }
         };
 
-        printAntiClockWise(givenArray);
+        System.out.print("Clock Wise : ");
         printClockWise(givenArray);
+        System.out.print("\nAnti Clock Wise : ");
+        printAntiClockWise(givenArray);
+        
 
     }
 
