@@ -7,7 +7,7 @@ public class PrintArray {
         int rowLength = arr.length;
         int colLength = arr.length;
 
-		 int colStartIndex = 0, rowStartIndex = 0;
+		int colStartIndex = 0, rowStartIndex = 0;
 
 		int visited = 0;
 		int totalElement = rowLength * colLength;
@@ -124,9 +124,11 @@ public class PrintArray {
 
     public static void main(String[] args) {
         int givenArray[][] = {
-                { 1, 2, 3 },
-                { 4, 5, 6 },
-                { 7, 8, 9 }
+                { 1, 2, 3,4 },
+                { 5, 6, 7,8 },
+                { 9, 10, 11 ,12},
+                { 13, 14, 15 ,16}
+
         };
 
         System.out.print("Clock Wise : ");
