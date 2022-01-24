@@ -9,7 +9,6 @@ abstract class Politician {
     String Vehicle;
 
 }
-
 class PM extends Politician{
     
    
@@ -37,16 +36,6 @@ class PM extends Politician{
         return this.winning_constituencys;
 
     }
-
-    
-
-
-
-
-
-    
-
-
 
 
 }

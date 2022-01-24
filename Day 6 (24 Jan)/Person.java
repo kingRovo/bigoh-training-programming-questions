@@ -1,21 +1,21 @@
+import java.util.*;
+
 class Vehicles {
 
-    private String type;
     private String name;
     private String model;
+    private String type;
     private String colour;
 
-    //vehicles(){}
-    // vehicles(String type, String name, String model, String colour) {
-    //     this.type = type;
-    //     this.name = name;
-    //     this.model = model;
-    //     this.colour = colour;
+    Vehicles() {
+    }
 
-    // }
-
-    public void setType(String type) {
+    Vehicles(String name, String model, String colour, String type) {
         this.type = type;
+        this.name = name;
+        this.model = model;
+        this.colour = colour;
+
     }
 
     public void setName(String name) {
@@ -30,54 +30,120 @@ class Vehicles {
         this.colour = colour;
     }
 
-    public void displayVehicleInfo(){
-        System.out.println("Vehicle : "+this.type);
-        System.out.println(" Name   : "+this.name);
-        System.out.println(" Model  : "+this.model);
-        System.out.println(" Colour : "+this.colour);
+    public String getName() {
+        return this.name;
     }
 
+    public String getModel() {
+        return this.model;
+    }
 
+    public String getColour() {
+        return this.colour;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    String displayVehicleInfo() {
+
+        return type + "  " + name + "  " + model + "  " + colour;
+
+    }
 
 }
 
+class Car extends Vehicles {
 
+    Car(String name, String model, String colour, String type) {
+        super(name, model, colour, type);
 
+    }
 
-public class Person extends Vehicles {
+    String displayVehicleInfo() {
+
+        return super.getType() + "  " + super.getName() + "  " + super.getModel() + "  " + super.getColour();
+
+    }
+
+}
+
+class Bike extends Vehicles {
+
+    Bike(String name, String model, String colour, String type) {
+        super(name, model, colour, type);
+
+    }
+
+    String displayVehicleInfo() {
+
+        return super.getType() + "  " + super.getName() + "  " + super.getModel() + "  " + super.getColour();
+
+    }
+
+}
+
+public class Person {
     private String name;
     private int age;
-    
 
-
-    Person(String name,int age){ 
+    Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public void addVehicle(String type, String name, String model, String colour){
-        super.setType(type);
-        super.setName(name);
-        super.setModel(model);
-        super.setColour(colour);
-        
+    ArrayList<Vehicles> vehicles = new ArrayList<>();
+
+    public void addVehicle(String type, String name, String model, String colour) {
+
+        if (type == "Car") {
+            vehicles.add(new Car(name, model, colour, type));
+        } else {
+            vehicles.add(new Bike(name, model, colour, type));
+        }
+
     }
-    public void displayInfo(){
 
-        System.out.println("Name : "+this.name+"  ---  Age"+this.age);
+    public void displayInfo() {
 
-        super.displayVehicleInfo();
+        System.out.println("Name : " + name + "   --   " + age);
+
+        if (vehicles.size() < 1) {
+            System.out.println(name + " does't have any Vehicle");
+        }
+
+        for (int i = 0; i < vehicles.size(); i++) {
+
+            System.out.println(vehicles.get(i).displayVehicleInfo());
+
+        }
+
     }
 
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        Person person = new Person("Updesh", 21);
+
+        int numofVehicle = 2;
+
+            for (int i = 0; i < numofVehicle; i++) {
+                System.out.println("Add Vehicle num " + (i + 1));
+                person.addVehicle(scanner.nextLine(), scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
+            }
+
+            person.displayInfo();
+
         
 
-        Person person =  new Person("Updesh",21);
-
-        person.addVehicle("Car","BMW","T2019", "Green");
-
-        person.displayInfo();
+        scanner.close();
+        
     }
-  
-  
+
 }
