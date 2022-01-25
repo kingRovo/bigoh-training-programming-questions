@@ -129,12 +129,19 @@ public class Person {
 
         Scanner scanner = new Scanner(System.in);
 
-        Person person = new Person("Updesh", 21);
+        System.out.println("Enter name and age of a person : ");
+        String name  =  scanner.nextLine();
+        int age = scanner.nextInt();
+        Person person = new Person(name, age);
 
-        int numofVehicle = 2;
+        System.out.println("Number of vehicle have? :");
+        
+        int numofVehicle = scanner.nextInt();
+        scanner.nextLine();
 
             for (int i = 0; i < numofVehicle; i++) {
                 System.out.println("Add Vehicle num " + (i + 1));
+                                 // type(car/bike)       model               color              type
                 person.addVehicle(scanner.nextLine(), scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
             }
 

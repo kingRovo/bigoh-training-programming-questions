@@ -211,7 +211,7 @@ public class Commisioner {
 
         pm.setDriver("Ram gopal", 46, "Car");
         pm.setPilot("Rajendra", 44, "Aircraft");
-        //permision for minister arresting
+        
         
         //Minister
 
