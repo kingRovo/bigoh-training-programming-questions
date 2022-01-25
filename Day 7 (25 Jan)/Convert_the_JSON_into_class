@@ -1,0 +1,39 @@
+{
+   "firstName":"John",
+   "lastName":"Smith",
+   "age":25,
+   "address":{
+      "streetAddress":"21 2nd Street",
+      "city":"New York",
+      "state":"NY",
+      "postalCode":10021
+   },
+   "phoneNumbers":[
+      {
+         "type":"home",
+         "number":"212 555-1234"
+      },
+      {
+         "type":"fax",
+         "number":"646 555-4567"
+      }
+   ]
+}
+---------Json to class------
+
+class Student{
+    String firstName;
+    String lastName;
+    int age;
+    Address address;
+
+    List<Object> phoneNumbers;
+
+}
+
+class Address{
+    String streetAddress;
+    String city;
+    String state;
+    int postalCode;
+}

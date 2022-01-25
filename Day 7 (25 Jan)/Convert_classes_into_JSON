@@ -1,0 +1,53 @@
+public class Employee
+{    
+    String name;  
+    int salary;  
+    Boolean married;
+    String grade = null;
+    Address address;
+    List<String> mobileNumbers;
+    Map<String,Object> Address;
+}
+
+public class Address
+{
+ String primaryAddress;
+ String secondaryAddress;
+ String country;
+ String state;
+}
+
+------------Json  formate of Employee class --------
+
+Employee{
+
+
+"name":"Updesh",
+"salary": 50000,
+"married": false,
+"grade" : "A+",
+
+ address{
+    "primaryAddress": "DayalBagh, Agra",
+    "secondaryAddress" : "Noida, UP",
+    "country" : "India",
+    "state" : "Uttar Pradesh"
+    },
+
+"mobileNumbers" :["9999999","122233445","12343434","12321321","123123213"],
+ 
+    address:[
+    "home": { "primaryAddress": "DayalBagh, Agra",
+               "secondaryAddress" : "Noida, UP",
+               "country" : "India",
+               "state" : "Uttar Pradesh"},
+
+    "Office" : {"primaryAddress": "DayalBagh, Agra",
+                "secondaryAddress" : "Noida, UP",
+                "country" : "India",
+                "state" : "Uttar Pradesh"}
+    
+ ]
+
+
+ }
