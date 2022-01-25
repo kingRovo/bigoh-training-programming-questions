@@ -1,16 +1,16 @@
 import java.util.*;
 
-class Vehicles {
+class Vehicle {
 
     private String name;
     private String model;
     private String type;
     private String colour;
 
-    Vehicles() {
+    Vehicle() {
     }
 
-    Vehicles(String name, String model, String colour, String type) {
+    Vehicle(String name, String model, String colour, String type) {
         this.type = type;
         this.name = name;
         this.model = model;
@@ -58,7 +58,7 @@ class Vehicles {
 
 }
 
-class Car extends Vehicles {
+class Car extends Vehicle {
 
     Car(String name, String model, String colour, String type) {
         super(name, model, colour, type);
@@ -73,7 +73,7 @@ class Car extends Vehicles {
 
 }
 
-class Bike extends Vehicles {
+class Bike extends Vehicle {
 
     Bike(String name, String model, String colour, String type) {
         super(name, model, colour, type);
@@ -97,7 +97,7 @@ public class Person {
         this.age = age;
     }
 
-    ArrayList<Vehicles> vehicles = new ArrayList<>();
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public void addVehicle(String type, String name, String model, String colour) {
 
