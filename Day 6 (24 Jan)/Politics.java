@@ -1,8 +1,9 @@
-class Constant{
+class Constant {
     final static long spendingLimit_MP = 100000;
-    final static long spendingLimit_Minster =    1000000;
+    final static long spendingLimit_Minster = 1000000;
     final static long spendingLimit_PM = 10000000;
 }
+
 class Person {
     private String name;
     private int age;
@@ -68,20 +69,22 @@ class Pilot extends Person {
 class MP extends Person {
 
     String constituency;
-    final long spendingLimit = 100000;
-    static int totalExpense;
+
+    int totalExpense;
     String name;
     int age;
+    String role;
 
     MP() {
 
     }
 
-    MP(String name, int age, String winning_constituency, int totalExpense) {
+    MP(String name, int age, String winning_constituency, int totalExpense, String role) {
 
         super(name, age);
         this.name = name;
         this.age = age;
+        this.role = role;
         this.constituency = winning_constituency;
         this.totalExpense = totalExpense;
     }
@@ -102,7 +105,7 @@ class MP extends Person {
 
     boolean exceedsSpendingLimit() {
 
-        if (spendingLimit < totalExpense)
+        if (Constant.spendingLimit_MP < totalExpense)
             return true;
 
         else
@@ -119,37 +122,19 @@ class Minister extends MP {
 
     final long spendingLimit = 1000000;
 
-    Minister(String name, int age, String Constituency, int totalExpense) {
+    Minister(String name, int age, String Constituency, int totalExpense, String role) {
 
-        super(name, age, Constituency, totalExpense);
-
-    }
-
-    Driver driver;
-
-    public void setDriver(String name, int age, String Drive) {
-
-        driver = new Driver(name, age, Drive);
-
-    }
-
-    public String getDriver() {
-
-        return driver.getName();
+        super(name, age, Constituency, totalExpense, role);
 
     }
 
     boolean exceedsSpendingLimit() {
 
-        if (spendingLimit < totalExpense)
+        if (Constant.spendingLimit_Minster < totalExpense)
             return true;
 
         else
             return false;
-    }
-
-    String getConstituency() {
-        return this.constituency;
     }
 
 }
@@ -158,27 +143,21 @@ class PM extends MP {
 
     final long spendingLimit = 10000000;
 
-    PM(String name, int age, String Constituency, int totalExpense) {
+    PM(String name, int age, String Constituency, int totalExpense, String role) {
 
-        super(name, age, Constituency, totalExpense);
+        super(name, age, Constituency, totalExpense, role);
     }
 
     boolean givePermission(boolean canArrest) {
         return canArrest;
     }
+    boolean exceedsSpendingLimit() {
 
-    Driver driver;
+        if (Constant.spendingLimit_PM < totalExpense)
+            return true;
 
-    public void setDriver(String name, int age, String Drive) {
-
-        driver = new Driver(name, age, Drive);
-
-    }
-
-    public String getDriver() {
-
-        return driver.getName();
-
+        else
+            return false;
     }
 
     Pilot pilot;
@@ -193,55 +172,49 @@ class PM extends MP {
         return pilot.getName();
     }
 
-    String getConstituency() {
-        return this.constituency;
+}
+
+class Commisioner  extends Person{
+
+    Commisioner(String name, int age){
+        super(name,age);
+    }
+
+
+    boolean canArrest(MP mp,PM pm){
+
+        
+        if (!mp.exceedsSpendingLimit()) {
+            return false;    
+        }
+        if(mp.role=="Minister"){
+             
+            if (pm.givePermission(true)) {
+                return true;
+            }
+        }
+        if (mp.role=="PM") {
+
+            return false;
+            
+        }
+        else return true;
+
     }
 
 }
 
-public class Commisioner {
-
-
-
+public class Politics {
 
     public static void main(String[] args) {
-
-        //MP 
-
-        // boolean canArrest(){
-
-        //     if (canArrest) {
-                
-        //     }
-
-        // }
-        MP mp = new MP("Raz Kumar",46,"Agra",50000);
-        mp.setDriver("Rahul",33,"Car");
-
-        if(mp.exceedsSpendingLimit()){
-            System.out.println(mp.name+" Arrested...");
-        }
         
-        PM pm = new PM("Updesh Yadav", 33, "GB Nagar", 1200000);
-
-        pm.setDriver("Ram gopal", 46, "Car");
-        pm.setPilot("Rajendra", 44, "Aircraft");
+        MP mp = new PM("Updesh Yadav", 46,"Mathura",470000,"PM");
+        PM pm =(PM)mp; 
+        Commisioner commisioner = new Commisioner("Raj",45);
         
-        
-        //Minister
+        MP minister = new Minister("Rahul",37,"Agra",56000,"Minister");
 
-        Minister minister  = new Minister("Shubh",52,"Mathura",70000);
-
-        minister.setDriver("Raju", 30, "Car");
-
-        if(minister.exceedsSpendingLimit()){
-
-            if (pm.givePermission(true)) {
-                
-                System.out.println(minister.name+" Arrested...");
-
-            }
-        }
+        System.out.println(commisioner.canArrest(minister,pm));
 
 
 
