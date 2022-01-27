@@ -21,7 +21,6 @@ public class SlidingWindow {
                 
             }
             result[index++] = max;
-
             
         }
 

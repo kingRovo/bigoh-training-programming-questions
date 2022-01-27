@@ -212,10 +212,11 @@ public class Politics {
         PM pm =(PM)mp; 
         Commisioner commisioner = new Commisioner("Raj",45);
         
-        MP minister = new Minister("Rahul",37,"Agra",56000,"Minister");
+        MP minister = new Minister("Rahul",37,"Agra",5600000,"Minister");
 
         System.out.println(commisioner.canArrest(minister,pm));
 
+        
 
 
     }

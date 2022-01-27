@@ -30,6 +30,10 @@ class Student{
     List<Object> phoneNumbers;
 
 }
+class PhoneNumbers{
+
+   String 
+}
 
 class Address{
     String streetAddress;
