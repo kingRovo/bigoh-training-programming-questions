@@ -1,4 +1,4 @@
-{
+" {
    "firstName":"John",
    "lastName":"Smith",
    "age":25,
@@ -18,7 +18,7 @@
          "number":"646 555-4567"
       }
    ]
-}
+}"
 ---------Json to class------
 
 class Student{
@@ -32,7 +32,8 @@ class Student{
 }
 class PhoneNumbers{
 
-   String 
+   String type;
+   String phoneNumbers;
 }
 
 class Address{

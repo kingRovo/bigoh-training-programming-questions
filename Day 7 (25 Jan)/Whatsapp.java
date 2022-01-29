@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 
-
-
-
-
 class Contact {
 
     private String name;
@@ -262,8 +258,6 @@ public class Whatsapp {
         }
         Image image = new Image("Grp pic","https..","college pic");
         contacts.get(1).setStatus("Hello, ", image);
-
-
      
         System.out.println(contacts.get(1).getStatus());
 
