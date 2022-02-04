@@ -7,9 +7,6 @@ interface MainBox {
     public int TotalGSMCost();
 
     public int boxCost();
-
-
-
     
 }
 
@@ -76,9 +73,9 @@ class Box implements MainBox {
         this.pastingCost = pastingCost;
     }
 
-    public void boxPart(String parttype){
+    public void boxPart(String partytype){
 
-        if(parttype == "Double"){
+        if(partytype == "Double"){
 
             pastingCost =  pastingCost*3;
         }
@@ -145,7 +142,7 @@ class TopOpening_SnapLock extends Box {
 
     TopOpening_SnapLock(int hight, int length, int width) {
         
-        super(hight, length, width);
+    super(hight, length, width);
     }
 
 }

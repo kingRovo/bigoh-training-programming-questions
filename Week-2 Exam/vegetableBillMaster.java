@@ -1,10 +1,9 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class VegetableBill {
 
-    HashMap<String, Double> billItems = new HashMap<>();
-
-    HashMap<String, Double> discounts = new HashMap<>();
+    ArrayList<Item> items = new ArrayList<>();
 
     Double totalCost = 0.0;
 
@@ -20,13 +19,8 @@ class VegetableBill {
     }
     
     public void addItem(Item item) {
-        billItems.put(item.getName(), item.getPrice());
-        if(clerk.applyforDiscount)
-        discounts.put(item.getName(), item.getDiscount());
-        else
-        discounts.put(item.getName(), 0.0);
-
-
+        items.add(item);
+        
     }
 
     public double getTotal() {
@@ -36,6 +30,12 @@ class VegetableBill {
             totalCost = totalCost + billItems.get(item);
         }
 
+        for (int i = 0; i < items.size(); i++) {
+
+            totalCost = totalCost+ (items.get(i).getPrice());
+            
+        }
+
         return totalCost;
     }
 
@@ -43,10 +43,12 @@ class VegetableBill {
     public void printReceipt( DiscountBill discountBill) {
 
         System.out.println(" ---  Item        Price             Disccount");
-        for (String item : billItems.keySet()) {
+    
 
-            System.out.println(" ---  " + item + "    " + billItems.get(item)+"      " +discounts.get(item));
 
+        for (int i = 0; i < items.size(); i++) {
+            
+            System.out.println(" ---  " + items.get(i).getName() + "    " + items.get(i).getPrice()+"      " +items.get(i).getDiscount());
         }
 
         System.out.println("--------------------------------------");
@@ -143,7 +145,7 @@ class DiscountBill extends VegetableBill {
     boolean isDiscountApply = false;
 
     VegetableBill vegetableBill;
-    public DiscountBill(Employee clerk,VegetableBill vegetableBill) {
+    public DiscountBill(Employee clerk) {
 
         
 
